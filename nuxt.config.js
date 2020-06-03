@@ -12,7 +12,8 @@ export default {
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css'}
     ]
   },
   /*
@@ -33,6 +34,7 @@ export default {
   ** Nuxt.js dev-modules
   */
   buildModules: [
+    '@nuxt/components'
   ],
   /*
   ** Nuxt.js modules
@@ -50,5 +52,6 @@ export default {
     */
     extend (config, ctx) {
     }
-  }
+  },
+  components: true
 }
