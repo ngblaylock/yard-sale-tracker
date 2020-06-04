@@ -10,11 +10,53 @@
         >
           <div
             class="color"
-            :style="`background-color: ${categories[transaction.category].color};`"
+            :style="
+              `background-color: ${categories[transaction.category].color};`
+            "
           ></div>
           ${{ Number.parseFloat(transaction.price).toFixed(2) }}
-          <div class="text-danger ml-auto"><i class="fas fa-trash"></i></div>
+          <div class="text-danger ml-auto p-3">
+            <i class="fas fa-trash"></i>
+          </div>
         </div>
+
+        <form>
+          <div class="d-flex align-items-center mt-3 category-select">
+            <b-dropdown id="dropdown-1" class="category-select mx-3" no-caret>
+              <template v-slot:button-content>
+                <i class="fas fa-plus"></i>
+              </template>
+              <div class="py-2 px-3 d-flex flex-wrap justify-content-between">
+                <button
+                  class="category-option"
+                  :style="`background-color: ${category.color}`"
+                  v-for="(category, index) in categories"
+                  :key="index"
+                  @click.prevent=""
+                ></button>
+              </div>
+            </b-dropdown>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text rounded-left">$</span>
+              </div>
+              <input
+                type="number"
+                class="form-control rounded-right"
+                aria-label="Amount (to the nearest dollar)"
+              />
+            </div>
+            <button class="btn btn-link"><i class="fas fa-times"></i></button>
+          </div>
+          <button class="btn btn-light mt-3" type="submit">Add Item</button>
+        </form>
+        <hr class="double-line" />
+        <p class="h2 text-right">
+          <small class="text-secondary">Transaction Total:</small> ${{Number.parseFloat(transactionTotal).toFixed(2)}}
+        </p>
+        <p class="text-right">
+          <button class="btn btn-light">Save and Clear</button>
+        </p>
       </div>
       <div class="col-sm-5">
         <TotalSales />
@@ -65,8 +107,15 @@ export default {
         {
           name: 'Red',
           color: '#D9534F'
-        },
+        }
       ]
+    }
+  },
+  computed: {
+    transactionTotal: function() {
+      return this.thisTransaction.reduce((currentTotal, transaction) => {
+        return currentTotal + parseFloat(transaction.price)
+      }, 0)
     }
   }
 }
@@ -85,6 +134,25 @@ export default {
     height: 32px;
     border-radius: 32px;
     margin: 12px;
+  }
+}
+hr.double-line {
+  border-top: 3px double var(--secondary);
+}
+</style>
+
+<style lang="scss">
+.category-select {
+  .dropdown-toggle-no-caret {
+    border-radius: 20px;
+  }
+  .category-option {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background-color: green;
+    margin: 0.25em;
+    border-radius: 32px;
   }
 }
 </style>
