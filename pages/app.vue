@@ -1,8 +1,9 @@
 <template>
-  <div class="container mt-4">
+  <div class="container mt-4" v-if="categories[0]">
     <div class="row">
       <div class="col-sm-7">
-        <h1>This Transaction</h1>
+        <h1>{{ saleName }}</h1>
+        <h2 class="h3 mt-3">This Transaction</h2>
         <div
           class="transaction"
           v-for="(transaction, index) in thisTransaction"
@@ -15,51 +16,37 @@
             "
           ></div>
           ${{ Number.parseFloat(transaction.price).toFixed(2) }}
-          <div class="text-danger ml-auto p-3">
-            <i class="fas fa-trash"></i>
+          <div class="ml-auto p-3">
+            <button
+              class="btn btn-link text-danger"
+              @click="thisTransaction.splice(index, 1)"
+            >
+              <i class="fas fa-trash"></i>
+            </button>
           </div>
         </div>
 
-        <form>
-          <div class="d-flex align-items-center mt-3 category-select">
-            <b-dropdown id="dropdown-1" class="category-select mx-3" no-caret>
-              <template v-slot:button-content>
-                <i class="fas fa-plus"></i>
-              </template>
-              <div class="py-2 px-3 d-flex flex-wrap justify-content-between">
-                <button
-                  class="category-option"
-                  :style="`background-color: ${category.color}`"
-                  v-for="(category, index) in categories"
-                  :key="index"
-                  @click.prevent=""
-                ></button>
-              </div>
-            </b-dropdown>
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text rounded-left">$</span>
-              </div>
-              <input
-                type="number"
-                class="form-control rounded-right"
-                aria-label="Amount (to the nearest dollar)"
-              />
-            </div>
-            <button class="btn btn-link"><i class="fas fa-times"></i></button>
-          </div>
-          <button class="btn btn-light mt-3" type="submit">Add Item</button>
-        </form>
+        <AddNewItem
+          @add-item="thisTransaction.push({ ...$event })"
+          :categories="categories"
+        />
         <hr class="double-line" />
         <p class="h2 text-right">
-          <small class="text-secondary">Transaction Total:</small> ${{Number.parseFloat(transactionTotal).toFixed(2)}}
+          <small class="text-secondary">Transaction Total:</small> ${{
+            Number.parseFloat(transactionTotal).toFixed(2)
+          }}
         </p>
         <p class="text-right">
-          <button class="btn btn-light">Save and Clear</button>
+          <button class="btn btn-dark" @click="updateCompletedTransactions">
+            Save and Clear
+          </button>
         </p>
       </div>
       <div class="col-sm-5">
-        <TotalSales />
+        <TotalSales
+          :categories="categories"
+          :completedTransactions="completedTransactions"
+        />
       </div>
     </div>
   </div>
@@ -67,48 +54,24 @@
 
 <script>
 export default {
+  name: 'App',
   data: function() {
     return {
-      thisTransaction: [
-        {
-          category: 0,
-          price: '12'
-        },
-        {
-          category: 0,
-          price: '1'
-        },
-        {
-          category: 1,
-          price: '19'
-        },
-        {
-          category: 2,
-          price: '2.5'
-        },
-        {
-          category: 3,
-          price: '13.75'
-        }
-      ],
-      categories: [
-        {
-          name: 'Blue',
-          color: '#1C7CD5'
-        },
-        {
-          name: 'Green',
-          color: '#5CB85C'
-        },
-        {
-          name: 'Yellow',
-          color: '#F0AD4E'
-        },
-        {
-          name: 'Red',
-          color: '#D9534F'
-        }
-      ]
+      saleName: '',
+      thisTransaction: [],
+      completedTransactions: [],
+      categories: []
+    }
+  },
+  methods: {
+    updateCompletedTransactions: function() {
+      if (this.completedTransactions.push(this.thisTransaction)) {
+        this.thisTransaction = []
+        localStorage.setItem(
+          'completedTransactions',
+          JSON.stringify(this.completedTransactions)
+        )
+      }
     }
   },
   computed: {
@@ -116,6 +79,21 @@ export default {
       return this.thisTransaction.reduce((currentTotal, transaction) => {
         return currentTotal + parseFloat(transaction.price)
       }, 0)
+    }
+  },
+  mounted: function() {
+    if (localStorage.completedTransactions) {
+      this.completedTransactions = JSON.parse(
+        localStorage.getItem('completedTransactions')
+      )
+    }
+    if (localStorage.categories) {
+      this.categories = JSON.parse(localStorage.getItem('categories'))
+    } else {
+      this.$router.push('/new-sale')
+    }
+    if (localStorage.saleName) {
+      this.saleName = JSON.parse(localStorage.getItem('saleName'))
     }
   }
 }

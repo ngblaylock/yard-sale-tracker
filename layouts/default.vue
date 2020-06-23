@@ -22,5 +22,8 @@ export default {
     main{
       flex: 1 1 auto;
     }
+    .container{
+      max-width: 1170px;
+    }
   }
 </style>
