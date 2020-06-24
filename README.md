@@ -14,19 +14,22 @@
 | June 21, 2020 | 3 Hours   | Total Sales                  |
 | June 22, 2020 | 1.5 Hours | New Sale Setup               |
 | June 23, 2020 | 1.5 Hours | New Sale Connection          |
+| June 24, 2020 | 1.5 Hours | Download Data to JSON        |
 
 ## Todo
 
 - Add Past Transaction Info
 - Come up with new name
 - Build out Settings for custom categories
-- Download JSON File
+- Add Condition to download JSON
+- Add Date to Downloaded JSON File
 - Upload JSON File
 - Splash Page
 
 ## Bugs/Usability
 
 - Focusing outside categoryDropdown doesn't hide categories
+- Save and Clear with no items will push empty array
 
 ## Enhancements
 

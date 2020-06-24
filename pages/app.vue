@@ -1,5 +1,5 @@
 <template>
-  <div class="container mt-4" v-if="categories[0]">
+  <div class="container my-4" v-if="categories[0]">
     <div class="row">
       <div class="col-sm-7">
         <h1>{{ saleName }}</h1>
