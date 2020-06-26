@@ -6,7 +6,7 @@
       </p>
       <p class="h1">${{totalSales | toPrice}}</p>
     </div>
-    <div class="card-body bg-light">
+    <div class="card-body bg-light pb-0">
       <div
         v-for="(category, index) in categories"
         :key="index"
@@ -30,6 +30,12 @@
           </p>
         </div>
       </div>
+    </div>
+    <div class="card-body bg-light border-top">
+      <h2>Past Transactions</h2>
+      <div role="tablist">
+          <PastSalesData />
+        </div>
     </div>
   </div>
 </template>
