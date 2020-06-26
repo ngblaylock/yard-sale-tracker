@@ -1,13 +1,33 @@
 <template>
   <div class="container my-4">
     <h1>New Sale Setup</h1>
-    <div class="alert alert-danger" v-if="currentTrackedSale">
+    <div class="alert alert-warning" v-if="currentTrackedSale">
       <strong>Warning:</strong> You have a current sale already being tracked.
       Creating a new sale will delete all currently tracked data. Please
       download your data before starting a new sale.
     </div>
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-md-4 mb-3 order-md-last">
+        <div class="bg-light p-3 rounded">
+          <form>
+            <h2>Upload Data</h2>
+            <label for="uploadData"
+              >If you have an existing project saved, upload it here to continue
+              where you left off.</label
+            >
+            <input
+              @change="uploadData"
+              id="uploadData"
+              type="file"
+              accept=".json"
+            />
+            <div class="alert alert-danger mt-3" v-if="uploadError">
+              <strong>Error:</strong> {{ uploadError }}
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-md-8">
         <form @submit.prevent="startNewSale">
           <div class="bg-light p-3 rounded">
             <div class="form-group mb-4">
@@ -113,7 +133,8 @@ export default {
             color: '#D9534F'
           }
         ]
-      }
+      },
+      uploadError: ''
     }
   },
   methods: {
@@ -127,14 +148,56 @@ export default {
     startNewSale: function() {
       new Promise((resolve, reject) => {
         localStorage.setItem('saleName', JSON.stringify(this.saleInfo.name))
-        localStorage.setItem('categories', JSON.stringify(this.saleInfo.categories))
+        localStorage.setItem(
+          'categories',
+          JSON.stringify(this.saleInfo.categories)
+        )
         localStorage.setItem('completedTransactions', '[]')
         resolve()
-      }).then(() => {
-        this.$router.push('/app')
-      }).catch(err => {
-        alert(err)
       })
+        .then(() => {
+          this.$router.push('/app')
+        })
+        .catch(err => {
+          alert(err)
+        })
+    },
+    uploadData: function() {
+      var files = document.getElementById('uploadData').files
+      console.log(files)
+      if (files.length <= 0) {
+        return false
+      }
+
+      var fr = new FileReader()
+
+      fr.onload = e => {
+        var result = JSON.parse(e.target.result)
+        var formatted = JSON.stringify(result, null, 2)
+
+        if (
+          result.saleName &&
+          result.categories &&
+          result.completedTransactions
+        ) {
+          // Add items to localStorage
+          localStorage.setItem('saleName', JSON.stringify(result.saleName))
+          localStorage.setItem('categories', JSON.stringify(result.categories))
+          localStorage.setItem(
+            'completedTransactions',
+            JSON.stringify(result.completedTransactions)
+          )
+
+          // Go to app
+          this.uploadError = ''
+          this.$router.push('/app')
+        } else {
+          this.uploadError =
+            'The file uploaded does not have valid information. Please upload a file that was downloaded using this application'
+        }
+      }
+
+      fr.readAsText(files.item(0))
     }
   },
   mounted: function() {

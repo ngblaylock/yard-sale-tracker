@@ -15,21 +15,26 @@
 | June 22, 2020 | 1.5 Hours | New Sale Setup               |
 | June 23, 2020 | 1.5 Hours | New Sale Connection          |
 | June 24, 2020 | 1.5 Hours | Download Data to JSON        |
+| June 25, 2020 | 1.5 Hours | Upload Data to JSON          |
 
 ## Todo
 
 - Add Past Transaction Info
 - Come up with new name
-- Build out Settings for custom categories
-- Add Condition to download JSON
 - Add Date to Downloaded JSON File
-- Upload JSON File
 - Splash Page
 
 ## Bugs/Usability
 
 - Focusing outside categoryDropdown doesn't hide categories
 - Save and Clear with no items will push empty array
+- Firefox Styling
+- Commas in money filter
+
+## Homepage
+
+- Free forever, no limits, because it is stored on your computer, and I wanted to make it for fun
+- Future enhancements are done when I feel like it and/or if someone donates enough money to motivate me.
 
 ## Enhancements
 

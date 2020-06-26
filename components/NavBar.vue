@@ -7,10 +7,12 @@
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav class="ml-auto">
-          <b-nav-item to="/app">App</b-nav-item>
+          <b-nav-item to="/">Home</b-nav-item>
+          <b-nav-item v-show="appHasData" to="/app">App</b-nav-item>
           <b-nav-item to="/new-sale">New Yard Sale</b-nav-item>
-          <b-nav-item @click="downloadData">Download Data</b-nav-item>
-          <b-nav-item to="/">*Upload Data</b-nav-item>
+          <b-nav-item v-show="appHasData" @click="downloadData"
+            >Download Data</b-nav-item
+          >
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
@@ -21,6 +23,11 @@
 <script>
 export default {
   name: 'Navigation',
+  data: function() {
+    return {
+      appHasData: false
+    }
+  },
   methods: {
     slugify: function(string) {
       const a =
@@ -62,6 +69,26 @@ export default {
       document.body.appendChild(a)
       a.click()
       document.body.removeChild(a)
+    },
+    appDataExists: function() {
+      if (
+        localStorage.saleName &&
+        localStorage.categories &&
+        localStorage.completedTransactions
+      ) {
+        console.log('We have data!!!')
+        this.appHasData = true
+      } else {
+        this.appHasData = false
+      }
+    }
+  },
+  mounted: function(){
+    this.appDataExists()
+  },
+  watch: {
+    $route(to, from) {
+      this.appDataExists()
     }
   }
 }
