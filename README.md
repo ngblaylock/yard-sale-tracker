@@ -25,6 +25,7 @@
 - Splash Page
 - Add Metadata to the downloaded JSON file for user instructions
 - Add Date to Downloaded JSON File
+- Custom Error Page
 
 ## Bugs/Usability
 
