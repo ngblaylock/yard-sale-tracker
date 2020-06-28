@@ -1,4 +1,4 @@
-# Yard Sale Tracker
+# Group Sale Tracker
 
 ## Time Spent
 
@@ -23,6 +23,7 @@
 - Come up with new name
 - Add Date to Downloaded JSON File
 - Splash Page
+- Add Metadata to the downloaded JSON file for user instructions
 
 ## Bugs/Usability
 

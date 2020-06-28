@@ -1,7 +1,14 @@
 <template>
   <nav>
     <b-navbar toggleable="sm" variant="light">
-      <b-navbar-brand to="/">Yard Sale Tracker</b-navbar-brand>
+      <b-navbar-brand to="/" class="d-flex align-items-center">
+        <img
+          src="~/assets/group-sale-tracker-logo.png"
+          alt="Group Sale Tracker Logo"
+          class="logo mr-2 rounded border"
+        />
+        Group Sale Tracker
+      </b-navbar-brand>
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
@@ -9,11 +16,30 @@
         <b-navbar-nav class="ml-auto">
           <b-nav-item to="/">Home</b-nav-item>
           <b-nav-item v-show="appHasData" to="/app">App</b-nav-item>
-          <b-nav-item to="/new-sale">New Yard Sale</b-nav-item>
+          <b-nav-item to="/new-sale">New Group Sale</b-nav-item>
           <b-nav-item v-show="appHasData" @click="downloadData"
             >Download Data</b-nav-item
           >
         </b-navbar-nav>
+        <b-button
+          v-show="appHasData"
+          v-b-modal.modal-1
+          variant="danger"
+          size="sm"
+          >Delete Sale</b-button
+        >
+        <b-modal
+          id="modal-1"
+          hide-header
+          ok-title="Yes, Delete"
+          ok-variant="danger"
+          @ok="deleteAllData"
+        >
+          <p class="mt-3">
+            Are you sure you want to delete your data? Make sure that you
+            download any data you want to keep in the future.
+          </p>
+        </b-modal>
       </b-collapse>
     </b-navbar>
     <div id="container"></div>
@@ -76,14 +102,21 @@ export default {
         localStorage.categories &&
         localStorage.completedTransactions
       ) {
-        console.log('We have data!!!')
         this.appHasData = true
       } else {
         this.appHasData = false
       }
+    },
+    deleteAllData: function() {
+      console.log('Deleted')
+      localStorage.removeItem('saleName')
+      localStorage.removeItem('categories')
+      localStorage.removeItem('completedTransactions')
+      this.appDataExists()
+      this.$router.go(0)
     }
   },
-  mounted: function(){
+  mounted: function() {
     this.appDataExists()
   },
   watch: {
@@ -95,9 +128,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.navbar-light .navbar-nav .nuxt-link-exact-active {
-  color: var(--dark);
-  border-bottom: 2px solid var(--secondary);
-  padding-bottom: 6px;
+nav {
+  .logo {
+    height: 30px;
+    width: 30px;
+  }
+  .navbar-light .navbar-nav .nuxt-link-exact-active {
+    color: var(--dark);
+    border-bottom: 2px solid var(--secondary);
+    padding-bottom: 6px;
+  }
 }
 </style>

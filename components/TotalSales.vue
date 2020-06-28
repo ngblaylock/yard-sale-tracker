@@ -4,7 +4,7 @@
       <p class="h4">
         Total Sales
       </p>
-      <p class="h1">${{totalSales | toPrice}}</p>
+      <p class="h1">${{ totalSales | toPrice }}</p>
     </div>
     <div class="card-body bg-light pb-0">
       <div
@@ -34,8 +34,14 @@
     <div class="card-body bg-light border-top">
       <h2>Past Transactions</h2>
       <div role="tablist">
-          <PastSalesData />
-        </div>
+        <PastSalesData
+          v-for="(transaction, index) in reversedCompletedTransactions"
+          :key="index"
+          :index="index"
+          :transaction="transaction"
+          :categories="categories"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -62,12 +68,19 @@ export default {
       return this.categorizedTransactionTotals.reduce((currentTotal, i) => {
         return currentTotal + i.amount
       }, 0)
+    },
+    reversedCompletedTransactions: function(){
+      return this.completedTransactions.reverse();
     }
   },
   filters: {
     toPrice: function(value) {
       if (!value) return '0.00'
       return value.toFixed(2)
+    },
+    reverse: function(items) {
+      console.log(items)
+    	return items.slice().reverse()
     }
   }
 }

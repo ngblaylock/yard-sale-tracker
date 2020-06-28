@@ -1,26 +1,33 @@
 <template>
-  <b-card no-body class="mb-1">
+  <b-card no-body class="mb-1" v-if="transaction.length">
     <b-card-header header-tag="header" class="p-0 bg-white" role="tab">
       <b-button
         block
-        v-b-toggle.accordion-1
+        v-b-toggle="'accordion-' + index"
         variant="link"
         class="text-left text-dark text-decoration-none d-flex align-items-center"
-        ><span>$17.50 <small class="text-secondary">7 items sold</small></span>
+        ><span>${{categorizedTransactionTotal.amount | toPrice}} <small class="text-secondary">{{categorizedTransactionTotal.quantity}} items sold</small></span>
         <i class="fas fa-caret-down text-secondary ml-auto"></i
       ></b-button>
     </b-card-header>
     <b-collapse
-      id="accordion-1"
-      visible
+      :id="`accordion-${index}`"
       accordion="my-accordion"
       role="tabpanel"
     >
       <b-card-body class="px-3 pb-3 pt-1">
         <div class="d-flex flex-wrap">
-          <div class="d-flex align-items-center mr-3" v-for="(x, index) in 7" :key="index">
-            <div class="category-color mr-2" style="background-color: blue"></div>
-            <div>${{x}}.50 ({{index}})</div>
+          <div
+            class="align-items-center mr-3"
+            v-for="(ctc, index) in categorizedTransactionCombined"
+            :key="index"
+            :class="ctc.amount > 0 ? 'd-flex' : 'd-none'"
+          >
+            <div
+              class="category-color mr-2"
+              :style="`background-color: ${categories[index].color}`"
+            ></div>
+            <div>${{ ctc.amount | toPrice }} ({{ ctc.quantity }})</div>
           </div>
         </div>
       </b-card-body>
@@ -30,9 +37,31 @@
 
 <script>
 export default {
-  data: function() {
-    return {
-      text: 'this is basic text'
+  name: 'PastSalesData',
+  props: ['index', 'transaction', 'categories'],
+  computed: {
+    categorizedTransactionCombined: function() {
+      let combined = []
+      for (var i = 0; i < this.categories.length; i++) {
+        combined.push({ amount: 0, quantity: 0 })
+      }
+      this.transaction.forEach(t => {
+        combined[t.category].amount += parseFloat(t.price)
+        combined[t.category].quantity += 1
+      })
+      return combined
+    },
+    categorizedTransactionTotal: function(){
+      let totalAmount = this.transaction.reduce((currentTotal, i) => {
+        return currentTotal + parseFloat(i.price)
+      }, 0)
+      return {amount: totalAmount, quantity: this.transaction.length}
+    }
+  },
+  filters: {
+    toPrice: function(value) {
+      if (!value) return '0.00'
+      return value.toFixed(2)
     }
   }
 }
@@ -45,13 +74,13 @@ export default {
     border-radius: calc(0.25rem - 1px);
     button {
       border-radius: 3px;
-      &.not-collapsed i{
+      &.not-collapsed i {
         transform: rotate(180deg);
       }
     }
   }
-  .card-body{
-    .category-color{
+  .card-body {
+    .category-color {
       width: 1em;
       height: 1em;
       border-radius: 100%;

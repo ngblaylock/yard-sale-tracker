@@ -118,19 +118,19 @@ export default {
         categories: [
           {
             name: '',
-            color: '#1C7CD5'
+            color: '#8883FF'
           },
           {
             name: '',
-            color: '#5CB85C'
+            color: '#DB5764'
           },
           {
             name: '',
-            color: '#F0AD4E'
+            color: '#F4D243'
           },
           {
             name: '',
-            color: '#D9534F'
+            color: '#38D0AD'
           }
         ]
       },
@@ -139,8 +139,16 @@ export default {
   },
   methods: {
     newCategory: function() {
-      let randomColor = Math.floor(Math.random() * 16777215).toString(16)
-      this.saleInfo.categories.push({ name: '', color: `#${randomColor}` })
+      let randomColor = () => {
+        var letters = '0123456789ABCDEF'
+        var color = '#'
+        for (var i = 0; i < 6; i++) {
+          color += letters[Math.floor(Math.random() * 16)]
+        }
+        return color;
+      }
+      console.log(randomColor())
+      this.saleInfo.categories.push({ name: '', color: `${randomColor()}` })
     },
     removeCategory: function(i) {
       this.saleInfo.categories.splice(i, 1)
