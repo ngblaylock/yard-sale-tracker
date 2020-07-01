@@ -187,6 +187,7 @@
 
 <script>
 export default {
+  name: "HomePage",
   data: function() {
     return {
       saleName: ''

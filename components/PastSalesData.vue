@@ -61,7 +61,9 @@ export default {
   filters: {
     toPrice: function(value) {
       if (!value) return '0.00'
-      return value.toFixed(2)
+      let v = parseFloat(value).toFixed(2)
+      // let d = v.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");      
+      return v
     }
   }
 }

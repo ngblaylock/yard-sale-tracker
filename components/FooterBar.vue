@@ -8,6 +8,12 @@
   </footer>
 </template>
 
+<script>
+export default {
+  name: "FooterBar"
+}
+</script>
+
 <style lang="scss" scoped>
   a{
     color: var(--light);

@@ -4,7 +4,7 @@
 
 | Date          | Time      | Worked On                                   |
 | ------------- | --------- | ------------------------------------------- |
-| Before        | 1 Hour    | Planning                                    |
+| Before        | 2 Hour    | Planning                                    |
 | May 16, 2020  | 1.5 Hours | Design in XD                                |
 | May 17, 2020  | 2 Hours   | Design in XD                                |
 | June 3, 2020  | 1.5 Hours | Start Nuxt and Initial Build                |
@@ -19,20 +19,21 @@
 | June 26, 2020 | 1.5 Hours | Designed Past Sales Data                    |
 | June 27, 2020 | 4 Hours   | Functionality for Past Sales Data, Homepage |
 | June 28, 2020 | 2 Hours   | Homepage, Initial Build                     |
+| June 29, 2020 | 1 Hour    | More Homepage                               |
+| July 1, 2020  | 1.5 Hours | Some Bug Fixes                              |
 
 ## Todo
 
-- Splash Page
+- Finish Splash Page
 - Add Metadata to the downloaded JSON file for user instructions
 - Add Date to Downloaded JSON File
 - Custom Error Page
+- Note that first category is the default category
 
 ## Bugs/Usability
 
 - Focusing outside categoryDropdown doesn't hide categories
-- Save and Clear with no items will push empty array
-- Firefox Styling
-- Commas in money filter
+- Regex for commas in dollar amount didn't work in FF. Maybe try it again?
 
 ## Enhancements
 

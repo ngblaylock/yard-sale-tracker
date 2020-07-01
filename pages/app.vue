@@ -33,14 +33,14 @@
         <hr class="double-line" />
         <p class="h2 text-right">
           <small class="text-secondary">Transaction Total:</small> ${{
-            Number.parseFloat(transactionTotal).toFixed(2)
+            transactionTotal | toPrice
           }}
         </p>
-        <p class="text-right">
+        <div class="text-right" v-show="thisTransaction.length > 0">
           <button class="btn btn-dark" @click="updateCompletedTransactions">
             Save and Clear
           </button>
-        </p>
+        </div>
       </div>
       <div class="col-sm-5">
         <TotalSales
@@ -54,7 +54,7 @@
 
 <script>
 export default {
-  name: 'App',
+  name: 'MainApp',
   data: function() {
     return {
       saleName: '',
@@ -95,6 +95,14 @@ export default {
     if (localStorage.saleName) {
       this.saleName = JSON.parse(localStorage.getItem('saleName'))
     }
+  },
+  filters: {
+    toPrice: function(value) {
+      if (!value) return '0.00'
+      let v = parseFloat(value).toFixed(2)
+      // let d = v.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");      
+      return v
+    },
   }
 }
 </script>

@@ -48,7 +48,7 @@
 
 <script>
 export default {
-  name: 'Navigation',
+  name: 'NavBar',
   data: function() {
     return {
       appHasData: false

@@ -69,18 +69,20 @@ export default {
         return currentTotal + i.amount
       }, 0)
     },
-    reversedCompletedTransactions: function(){
-      return this.completedTransactions.reverse();
+    reversedCompletedTransactions: function() {
+      return this.completedTransactions.reverse()
     }
   },
   filters: {
     toPrice: function(value) {
       if (!value) return '0.00'
-      return value.toFixed(2)
+      let v = parseFloat(value).toFixed(2)
+      // let d = v.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");      
+      return v
     },
     reverse: function(items) {
       console.log(items)
-    	return items.slice().reverse()
+      return items.slice().reverse()
     }
   }
 }

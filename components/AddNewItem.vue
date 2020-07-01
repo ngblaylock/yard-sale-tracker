@@ -56,6 +56,7 @@
 
 <script>
 export default {
+  name: 'AddNewItem',
   props: ['categories'],
   data: function() {
     return {
@@ -107,6 +108,9 @@ export default {
     border: 1px solid #ced4da;
     margin-top: 5px;
     margin-left: 5px;
+    button{
+      border: 2px solid #0000001c;
+    }
   }
 }
 </style>
