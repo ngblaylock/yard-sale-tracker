@@ -7,27 +7,7 @@
       download your data before starting a new sale.
     </div>
     <div class="row">
-      <div class="col-md-4 mb-3 order-md-last">
-        <div class="bg-light p-3 rounded">
-          <form>
-            <h2>Upload Data</h2>
-            <label for="uploadData"
-              >If you have an existing project saved, upload it here to continue
-              where you left off.</label
-            >
-            <input
-              @change="uploadData"
-              id="uploadData"
-              type="file"
-              accept=".json"
-            />
-            <div class="alert alert-danger mt-3" v-if="uploadError">
-              <strong>Error:</strong> {{ uploadError }}
-            </div>
-          </form>
-        </div>
-      </div>
-      <div class="col-md-8">
+      <div class="col-md-12">
         <form @submit.prevent="startNewSale">
           <div class="bg-light p-3 rounded">
             <div class="form-group mb-4">
@@ -118,23 +98,22 @@ export default {
         categories: [
           {
             name: '',
-            color: '#8883FF'
+            color: '#136EA8'
           },
           {
             name: '',
-            color: '#DB5764'
+            color: '#9B22E6'
           },
           {
             name: '',
-            color: '#F4D243'
+            color: '#EDA634'
           },
           {
             name: '',
-            color: '#38D0AD'
+            color: '#18A36E'
           }
         ]
       },
-      uploadError: ''
     }
   },
   methods: {
@@ -169,43 +148,6 @@ export default {
         .catch(err => {
           alert(err)
         })
-    },
-    uploadData: function() {
-      var files = document.getElementById('uploadData').files
-      console.log(files)
-      if (files.length <= 0) {
-        return false
-      }
-
-      var fr = new FileReader()
-
-      fr.onload = e => {
-        var result = JSON.parse(e.target.result)
-        var formatted = JSON.stringify(result, null, 2)
-
-        if (
-          result.saleName &&
-          result.categories &&
-          result.completedTransactions
-        ) {
-          // Add items to localStorage
-          localStorage.setItem('saleName', JSON.stringify(result.saleName))
-          localStorage.setItem('categories', JSON.stringify(result.categories))
-          localStorage.setItem(
-            'completedTransactions',
-            JSON.stringify(result.completedTransactions)
-          )
-
-          // Go to app
-          this.uploadError = ''
-          this.$router.push('/app')
-        } else {
-          this.uploadError =
-            'The file uploaded does not have valid information. Please upload a file that was downloaded using this application'
-        }
-      }
-
-      fr.readAsText(files.item(0))
     }
   },
   mounted: function() {

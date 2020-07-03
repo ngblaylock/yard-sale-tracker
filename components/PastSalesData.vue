@@ -6,7 +6,7 @@
         v-b-toggle="'accordion-' + index"
         variant="link"
         class="text-left text-dark text-decoration-none d-flex align-items-center"
-        ><span>${{categorizedTransactionTotal.amount | toPrice}} <small class="text-secondary">{{categorizedTransactionTotal.quantity}} items sold</small></span>
+        ><span>{{categorizedTransactionTotal.amount | toPrice}} <small class="text-secondary">{{categorizedTransactionTotal.quantity}} items sold</small></span>
         <i class="fas fa-caret-down text-secondary ml-auto"></i
       ></b-button>
     </b-card-header>
@@ -27,7 +27,7 @@
               class="category-color mr-2"
               :style="`background-color: ${categories[index].color}`"
             ></div>
-            <div>${{ ctc.amount | toPrice }} ({{ ctc.quantity }})</div>
+            <div>{{ ctc.amount | toPrice }} ({{ ctc.quantity }})</div>
           </div>
         </div>
       </b-card-body>
@@ -60,10 +60,7 @@ export default {
   },
   filters: {
     toPrice: function(value) {
-      if (!value) return '0.00'
-      let v = parseFloat(value).toFixed(2)
-      // let d = v.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");      
-      return v
+      return '$' + value.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,");
     }
   }
 }

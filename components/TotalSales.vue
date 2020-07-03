@@ -1,46 +1,82 @@
 <template>
-  <div class="card">
-    <div class="card-header bg-dark text-white text-center">
-      <p class="h4">
-        Total Sales
-      </p>
-      <p class="h1">${{ totalSales | toPrice }}</p>
-    </div>
-    <div class="card-body bg-light pb-0">
-      <div
-        v-for="(category, index) in categories"
-        :key="index"
-        class="d-flex mb-3 align-items-center"
-      >
+  <div>
+    <div class="card" v-if="showSaleInfo">
+      <div class="d-flex justify-content-between gst-btn-group">
+        <button class="btn btn-dark btn-sm" @click="showSaleInfo = false">
+          <i class="fas fa-eye-slash"></i> Hide Sale Info
+        </button>
+        <button class="btn btn-dark btn-sm" @click="downloadData">
+          <i class="fas fa-file-download"></i> Download Data
+        </button>
+        <button class="btn btn-dark btn-sm" v-b-modal.modal-delete-all-data>
+          <i class="fas fa-trash"></i> Delete Sale
+        </button>
+      </div>
+      <div class="card-header bg-dark text-white text-center">
+        <p class="h4">
+          Total Sales
+        </p>
+        <p class="h1">{{ totalSales | toPrice }}</p>
+      </div>
+      <div class="card-body bg-light pb-0">
         <div
-          class="mr-2 rounded-circle"
-          :style="`background-color: ${category.color}`"
-          style="width: 3em; height: 3em;"
-        ></div>
-        <div>
-          <p class="mb-0" style="font-size: 1.8em;">
-            ${{ categorizedTransactionTotals[index].amount | toPrice }}
-            <small class="text-muted"
-              >{{ categorizedTransactionTotals[index].quantity }} items
-              sold</small
-            >
-          </p>
-          <p class="mb-0">
-            <strong>{{ category.name }}</strong>
-          </p>
+          v-for="(category, index) in categories"
+          :key="index"
+          class="d-flex mb-3 align-items-center"
+        >
+          <div
+            class="mr-2 rounded-circle"
+            :style="`background-color: ${category.color}`"
+            style="width: 3em; height: 3em;"
+          ></div>
+          <div>
+            <p class="mb-0" style="font-size: 1.8em;">
+              {{ categorizedTransactionTotals[index].amount | toPrice }}
+              <small class="text-muted"
+                >{{ categorizedTransactionTotals[index].quantity }} items
+                sold</small
+              >
+            </p>
+            <p class="mb-0">
+              <strong>{{ category.name }}</strong>
+            </p>
+          </div>
         </div>
       </div>
+      <div class="card-body bg-light border-top">
+        <h2>Past Transactions</h2>
+        <div role="tablist">
+          <PastSalesData
+            v-for="(transaction, index) in reversedCompletedTransactions"
+            :key="index"
+            :index="index"
+            :transaction="transaction"
+            :categories="categories"
+          />
+        </div>
+      </div>
+      <b-modal
+        id="modal-delete-all-data"
+        hide-header
+        ok-title="Yes, Delete"
+        ok-variant="danger"
+        @ok="deleteAllData"
+      >
+        <p class="mt-3">
+          Are you sure you want to delete your data? Make sure that you download
+          any data you want to keep in the future.
+        </p>
+      </b-modal>
     </div>
-    <div class="card-body bg-light border-top">
-      <h2>Past Transactions</h2>
-      <div role="tablist">
-        <PastSalesData
-          v-for="(transaction, index) in reversedCompletedTransactions"
-          :key="index"
-          :index="index"
-          :transaction="transaction"
-          :categories="categories"
-        />
+    <div class="card" v-else>
+      <div class="card-body text-center">
+        <i class="fas fa-eye-slash fa-5x mb-3 text-muted"></i>
+        <p>
+          <button class="btn btn-dark" @click="showSaleInfo = true"><i class="fas fa-eye"></i> Show Sale Info</button>
+        </p>
+        <p class="small text-muted mb-0">
+          Your sale information have been hidden.
+        </p>
       </div>
     </div>
   </div>
@@ -50,6 +86,11 @@
 export default {
   name: 'TotalSales',
   props: ['categories', 'completedTransactions'],
+  data: function(){
+    return{
+      showSaleInfo: true
+    }
+  },
   computed: {
     categorizedTransactionTotals: function() {
       let transformed = []
@@ -73,12 +114,59 @@ export default {
       return this.completedTransactions.reverse()
     }
   },
+  methods: {
+    slugify: function(string) {
+      const a =
+        'àáâäæãåāăąçćčđďèéêëēėęěğǵḧîïíīįìłḿñńǹňôöòóœøōõőṕŕřßśšşșťțûüùúūǘůűųẃẍÿýžźż·/_,:;'
+      const b =
+        'aaaaaaaaaacccddeeeeeeeegghiiiiiilmnnnnoooooooooprrsssssttuuuuuuuuuwxyyzzz------'
+      const p = new RegExp(a.split('').join('|'), 'g')
+
+      return string
+        .toString()
+        .toLowerCase()
+        .replace(/\s+/g, '-') // Replace spaces with -
+        .replace(p, c => b.charAt(a.indexOf(c))) // Replace special characters
+        .replace(/&/g, '-and-') // Replace & with 'and'
+        .replace(/[^\w\-]+/g, '') // Remove all non-word characters
+        .replace(/\-\-+/g, '-') // Replace multiple - with single -
+        .replace(/^-+/, '') // Trim - from start of text
+        .replace(/-+$/, '') // Trim - from end of text
+    },
+    downloadData: function() {
+      let saleName = JSON.parse(localStorage.getItem('saleName'))
+      let categories = JSON.parse(localStorage.getItem('categories'))
+      let completedTransactions = JSON.parse(
+        localStorage.getItem('completedTransactions')
+      )
+      let slugName = this.slugify(saleName)
+      let downloadObj = {
+        saleName,
+        categories,
+        completedTransactions
+      }
+
+      let data =
+        'text/json;charset=utf-8,' +
+        encodeURIComponent(JSON.stringify(downloadObj))
+      let a = document.createElement('a')
+      a.href = 'data:' + data
+      a.download = `${slugName}.json`
+      document.body.appendChild(a)
+      a.click()
+      document.body.removeChild(a)
+    },
+    deleteAllData: function() {
+      console.log('Deleted')
+      localStorage.removeItem('saleName')
+      localStorage.removeItem('categories')
+      localStorage.removeItem('completedTransactions')
+      this.$router.go(0)
+    }
+  },
   filters: {
     toPrice: function(value) {
-      if (!value) return '0.00'
-      let v = parseFloat(value).toFixed(2)
-      // let d = v.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");      
-      return v
+      return '$' + value.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
     },
     reverse: function(items) {
       console.log(items)
@@ -87,3 +175,18 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.gst-btn-group {
+  button {
+    border-radius: 0;
+    flex: 1 1 auto;
+    &:first-child {
+      border-top-left-radius: 0.2rem;
+    }
+    &:last-child {
+      border-top-right-radius: 0.2rem;
+    }
+  }
+}
+</style>

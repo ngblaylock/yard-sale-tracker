@@ -21,6 +21,7 @@
 | June 28, 2020 | 2 Hours   | Homepage, Initial Build                     |
 | June 29, 2020 | 1 Hour    | More Homepage                               |
 | July 1, 2020  | 1.5 Hours | Some Bug Fixes                              |
+| July 3, 2020  | 2 Hours   | Improved Upload and data handling           |
 
 ## Todo
 
@@ -29,12 +30,13 @@
 - Add Date to Downloaded JSON File
 - Custom Error Page
 - Note that first category is the default category
+- Print Friendly Pages
 
 ## Bugs/Usability
 
 - Focusing outside categoryDropdown doesn't hide categories
-- Regex for commas in dollar amount didn't work in FF. Maybe try it again?
 
 ## Enhancements
 
 - Use form input dropdown for categoryDropdown
+- Save sales as PDF (not just print)

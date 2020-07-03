@@ -23,6 +23,7 @@
               <nuxt-link v-if="saleName" class="btn btn-outline-light" to="/app"
                 >Continue {{ saleName }}</nuxt-link
               >
+              <button v-else v-b-modal.modal-upload-data class="btn btn-outline-light">Upload Data</button>
             </p>
           </div>
           <div class="col-sm-6">

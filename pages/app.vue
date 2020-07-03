@@ -1,7 +1,7 @@
 <template>
   <div class="container my-4" v-if="categories[0]">
     <div class="row">
-      <div class="col-sm-7">
+      <div class="col-lg-7 col-md-6">
         <h1>{{ saleName }}</h1>
         <h2 class="h3 mt-3">This Transaction</h2>
         <div
@@ -32,7 +32,7 @@
         />
         <hr class="double-line" />
         <p class="h2 text-right">
-          <small class="text-secondary">Transaction Total:</small> ${{
+          <small class="text-secondary">Transaction Total:</small> {{
             transactionTotal | toPrice
           }}
         </p>
@@ -42,7 +42,7 @@
           </button>
         </div>
       </div>
-      <div class="col-sm-5">
+      <div class="col-lg-5 col-md-6">
         <TotalSales
           :categories="categories"
           :completedTransactions="completedTransactions"
@@ -98,10 +98,7 @@ export default {
   },
   filters: {
     toPrice: function(value) {
-      if (!value) return '0.00'
-      let v = parseFloat(value).toFixed(2)
-      // let d = v.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");      
-      return v
+      return '$' + value.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,");
     },
   }
 }

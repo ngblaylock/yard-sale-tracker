@@ -1,6 +1,6 @@
 <template>
   <nav>
-    <b-navbar toggleable="sm" variant="light">
+    <b-navbar toggleable="md" variant="light">
       <b-navbar-brand to="/" class="d-flex align-items-center">
         <img
           src="~/assets/group-sale-tracker-logo.png"
@@ -17,28 +17,14 @@
           <b-nav-item to="/">Home</b-nav-item>
           <b-nav-item v-show="appHasData" to="/app">App</b-nav-item>
           <b-nav-item to="/new-sale">New Group Sale</b-nav-item>
-          <b-nav-item v-show="appHasData" @click="downloadData"
-            >Download Data</b-nav-item
-          >
+          <b-nav-item v-b-modal.modal-upload-data>Upload Data</b-nav-item>
         </b-navbar-nav>
-        <b-button
-          v-show="appHasData"
-          v-b-modal.modal-1
-          variant="danger"
-          size="sm"
-          >Delete Sale</b-button
-        >
         <b-modal
-          id="modal-1"
+          id="modal-upload-data"
           hide-header
-          ok-title="Yes, Delete"
-          ok-variant="danger"
-          @ok="deleteAllData"
+          hide-footer
         >
-          <p class="mt-3">
-            Are you sure you want to delete your data? Make sure that you
-            download any data you want to keep in the future.
-          </p>
+          <UploadData />
         </b-modal>
       </b-collapse>
     </b-navbar>
@@ -55,47 +41,6 @@ export default {
     }
   },
   methods: {
-    slugify: function(string) {
-      const a =
-        'àáâäæãåāăąçćčđďèéêëēėęěğǵḧîïíīįìłḿñńǹňôöòóœøōõőṕŕřßśšşșťțûüùúūǘůűųẃẍÿýžźż·/_,:;'
-      const b =
-        'aaaaaaaaaacccddeeeeeeeegghiiiiiilmnnnnoooooooooprrsssssttuuuuuuuuuwxyyzzz------'
-      const p = new RegExp(a.split('').join('|'), 'g')
-
-      return string
-        .toString()
-        .toLowerCase()
-        .replace(/\s+/g, '-') // Replace spaces with -
-        .replace(p, c => b.charAt(a.indexOf(c))) // Replace special characters
-        .replace(/&/g, '-and-') // Replace & with 'and'
-        .replace(/[^\w\-]+/g, '') // Remove all non-word characters
-        .replace(/\-\-+/g, '-') // Replace multiple - with single -
-        .replace(/^-+/, '') // Trim - from start of text
-        .replace(/-+$/, '') // Trim - from end of text
-    },
-    downloadData: function() {
-      let saleName = JSON.parse(localStorage.getItem('saleName'))
-      let categories = JSON.parse(localStorage.getItem('categories'))
-      let completedTransactions = JSON.parse(
-        localStorage.getItem('completedTransactions')
-      )
-      let slugName = this.slugify(saleName)
-      let downloadObj = {
-        saleName,
-        categories,
-        completedTransactions
-      }
-
-      let data =
-        'text/json;charset=utf-8,' +
-        encodeURIComponent(JSON.stringify(downloadObj))
-      let a = document.createElement('a')
-      a.href = 'data:' + data
-      a.download = `${slugName}.json`
-      document.body.appendChild(a)
-      a.click()
-      document.body.removeChild(a)
-    },
     appDataExists: function() {
       if (
         localStorage.saleName &&
@@ -106,14 +51,6 @@ export default {
       } else {
         this.appHasData = false
       }
-    },
-    deleteAllData: function() {
-      console.log('Deleted')
-      localStorage.removeItem('saleName')
-      localStorage.removeItem('categories')
-      localStorage.removeItem('completedTransactions')
-      this.appDataExists()
-      this.$router.go(0)
     }
   },
   mounted: function() {
