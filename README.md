@@ -28,7 +28,6 @@
 
 - Finish Splash Page
 - Print Friendly Pages
-- Add Description to Individual Sale
 
 ## Bugs/Usability
 
@@ -37,5 +36,6 @@
 
 ## Enhancements
 
+- Add Description to Individual Sale
 - Use form input dropdown for categoryDropdown
 - Save sales as PDF (not just print)

@@ -1,5 +1,5 @@
 <template>
-  <div class="container text-center">
+  <div class="container text-center my-auto">
     <h1 class="display-1 text-muted">OOPS</h1>
     <p class="lead" v-if="error.statusCode === 404">That page does not exist.</p>
     <p class="lead" v-else>An error occurred.</p>

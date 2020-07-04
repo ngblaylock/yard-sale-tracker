@@ -22,6 +22,7 @@ export default {
     main{
       flex: 1 1 auto;
       display: flex;
+      flex-direction: column;
     }
     .container{
       max-width: 1170px;
