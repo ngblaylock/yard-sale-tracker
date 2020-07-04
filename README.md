@@ -22,7 +22,7 @@
 | June 29, 2020 | 1 Hour    | More Homepage                                |
 | July 1, 2020  | 1.5 Hours | Some Bug Fixes                               |
 | July 3, 2020  | 2 Hours   | Improved Upload and data handling            |
-| July 4, 2020  | 2 Hours   | Add Date to Download, Error Page, other bugs |
+| July 4, 2020  | 3 Hours   | Add Date to Download, Error Page, other bugs |
 
 ## Todo
 
