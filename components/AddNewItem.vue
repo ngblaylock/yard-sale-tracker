@@ -49,7 +49,7 @@
       </button>
     </div>
     <p class="text-right">
-      <button class="btn btn-outline-secondary mt-3" type="submit"><i class="fas fa-plus"></i> Add Item</button>
+      <button class="btn btn-outline-secondary btn-block mt-3" type="submit"><i class="fas fa-plus"></i> Add Item</button>
     </p>
   </form>
 </template>

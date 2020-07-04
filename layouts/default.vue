@@ -21,6 +21,7 @@ export default {
     min-height: 100vh;
     main{
       flex: 1 1 auto;
+      display: flex;
     }
     .container{
       max-width: 1170px;

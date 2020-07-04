@@ -72,7 +72,9 @@
       <div class="card-body text-center">
         <i class="fas fa-eye-slash fa-5x mb-3 text-muted"></i>
         <p>
-          <button class="btn btn-dark" @click="showSaleInfo = true"><i class="fas fa-eye"></i> Show Sale Info</button>
+          <button class="btn btn-dark" @click="showSaleInfo = true">
+            <i class="fas fa-eye"></i> Show Sale Info
+          </button>
         </p>
         <p class="small text-muted mb-0">
           Your sale information have been hidden.
@@ -83,11 +85,13 @@
 </template>
 
 <script>
+import moment from "moment"
+
 export default {
   name: 'TotalSales',
   props: ['categories', 'completedTransactions'],
-  data: function(){
-    return{
+  data: function() {
+    return {
       showSaleInfo: true
     }
   },
@@ -134,13 +138,21 @@ export default {
         .replace(/-+$/, '') // Trim - from end of text
     },
     downloadData: function() {
+      let instructions =
+        'Go to https://groupsaletracker.nathanblaylock.com and select Upload Data from the main navigation bar. Select this file from your folder. You should automatically be re-directed to the main app.'
+      let now = new Date()
+      let date = now.toString()
+      let nowFormatted = moment(now).format('YYMMDD_HHmmss');
       let saleName = JSON.parse(localStorage.getItem('saleName'))
       let categories = JSON.parse(localStorage.getItem('categories'))
       let completedTransactions = JSON.parse(
         localStorage.getItem('completedTransactions')
       )
-      let slugName = this.slugify(saleName)
+      let slugName = `${this.slugify(saleName)}-${nowFormatted}`
+
       let downloadObj = {
+        instructions,
+        date,
         saleName,
         categories,
         completedTransactions
@@ -157,7 +169,6 @@ export default {
       document.body.removeChild(a)
     },
     deleteAllData: function() {
-      console.log('Deleted')
       localStorage.removeItem('saleName')
       localStorage.removeItem('categories')
       localStorage.removeItem('completedTransactions')
@@ -169,7 +180,6 @@ export default {
       return '$' + value.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
     },
     reverse: function(items) {
-      console.log(items)
       return items.slice().reverse()
     }
   }

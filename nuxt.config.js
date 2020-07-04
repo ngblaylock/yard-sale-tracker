@@ -57,6 +57,8 @@ export default {
   },
   components: true,
   generate: {
-    dir: 'docs'
+    dir: 'docs',
+    fallback: true,
+    exclude: ['/bootstrap']
   }
 }

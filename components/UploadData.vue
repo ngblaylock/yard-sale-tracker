@@ -34,7 +34,6 @@ export default {
   methods: {
      uploadData: function() {
       var files = document.getElementById('uploadData').files
-      console.log(files)
       if (files.length <= 0) {
         return false
       }
@@ -62,6 +61,7 @@ export default {
           this.uploadError = ''
           this.$bvModal.hide('modal-upload-data')
           this.$router.push('/app')
+          if(this.$route.name === "app") this.$router.go()
         } else {
           this.uploadError =
             'The file uploaded does not have valid information. Please upload a file that was downloaded using this application'

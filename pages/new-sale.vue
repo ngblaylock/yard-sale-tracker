@@ -46,6 +46,7 @@
                       v-model="category.name"
                       required
                     />
+                    <p class="small text-muted mb-0" v-if="index == 0">This is the default category</p>
                   </div>
                 </div>
                 <div class="form-group row">
@@ -75,7 +76,7 @@
             </div>
             <button
               @click.prevent="newCategory"
-              class="btn btn-outline-secondary"
+              class="btn btn-outline-secondary btn-block"
             >
               <i class="fas fa-plus"></i> Add Category
             </button>
@@ -98,19 +99,19 @@ export default {
         categories: [
           {
             name: '',
-            color: '#136EA8'
+            color: '#007BFF'
           },
           {
             name: '',
-            color: '#9B22E6'
+            color: '#6F42C1'
           },
           {
             name: '',
-            color: '#EDA634'
+            color: '#DC3545'
           },
           {
             name: '',
-            color: '#18A36E'
+            color: '#28A745'
           }
         ]
       },
@@ -126,7 +127,6 @@ export default {
         }
         return color;
       }
-      console.log(randomColor())
       this.saleInfo.categories.push({ name: '', color: `${randomColor()}` })
     },
     removeCategory: function(i) {
