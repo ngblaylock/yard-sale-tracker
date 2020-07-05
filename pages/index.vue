@@ -3,7 +3,14 @@
     <div class="jumbotron bg-dark text-white rounded-0 px-0">
       <div class="container">
         <div class="row align-items-center">
-          <div class="col-sm-6">
+          <div class="col-lg-6 col-md-5 order-md-last">
+            <img
+              src="~/assets/computer-designed.png"
+              class="img-fluid"
+              alt="Computer Screen"
+            />
+          </div>
+          <div class="col-lg-6 col-md-7">
             <h1>Group Sale Tracker</h1>
             <p class="h4">
               Track sales easily with Group Sale Tracker, a free and easy to use
@@ -16,22 +23,21 @@
               sale, bake sale, concession stand or anything else, Group Sale
               Tracker can improve your sales tracking.
             </p>
-            <p>
+            <p style="line-height: 3em;">
               <nuxt-link class="btn btn-light" to="/new-sale"
                 >Start a New Group Sale</nuxt-link
               >
               <nuxt-link v-if="saleName" class="btn btn-outline-light" to="/app"
                 >Continue {{ saleName }}</nuxt-link
               >
-              <button v-else v-b-modal.modal-upload-data class="btn btn-outline-light">Upload Data</button>
+              <button
+                v-else
+                v-b-modal.modal-upload-data
+                class="btn btn-outline-light"
+              >
+                Upload Data
+              </button>
             </p>
-          </div>
-          <div class="col-sm-6">
-            <img
-              src="~/assets/computer.png"
-              class="img-fluid"
-              alt="Computer Screen"
-            />
           </div>
         </div>
       </div>
@@ -43,7 +49,14 @@
         </div>
       </div>
       <div class="row align-items-center my-5">
-        <div class="col-sm-6">
+        <div class="col-sm-4 offset-md-1">
+          <img
+            src="~/assets/stickers.png"
+            class="img-fluid"
+            alt="Sticker Example"
+          />
+        </div>
+        <div class="col-sm-8 col-md-6 offset-md-1">
           <h2>Categorize Your Sales</h2>
           <p>
             Whether you need 1 category, or 100, add as many categories as you
@@ -58,19 +71,12 @@
             writing the price on them for easy processing at the checkout.
           </p>
         </div>
-        <div class="col-sm-4 offset-sm-1">
-          <img
-            src="~/assets/stickers.png"
-            class="img-fluid"
-            alt="Sticker Example"
-          />
-        </div>
       </div>
       <div class="row align-items-center my-5">
-        <div class="col-sm-4 offset-sm-1">
+        <div class="col-sm-4 offset-md-1">
           <img src="~/assets/browser-storage.png" class="img-fluid" alt="" />
         </div>
-        <div class="col-sm-6 offset-sm-1">
+        <div class="col-sm-8 col-md-6">
           <h2>In Browser Data Storage</h2>
           <p>
             Group Sale Tracker saves all data to your browser, not on any server
@@ -188,7 +194,7 @@
 
 <script>
 export default {
-  name: "HomePage",
+  name: 'HomePage',
   data: function() {
     return {
       saleName: ''
