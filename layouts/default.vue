@@ -1,6 +1,6 @@
 <template>
   <div id="page-content">
-    <div class="alert alert-warning text-center mb-0 rounded-0">This app is currently in development. There are several known issues and features not yet implemented. Use this app at your own risk.</div>
+    <!-- <div class="alert alert-warning text-center mb-0 rounded-0">This app is currently in development. There are several known issues and features not yet implemented. Use this app at your own risk.</div> -->
     <NavBar />
     <main>
       <nuxt />

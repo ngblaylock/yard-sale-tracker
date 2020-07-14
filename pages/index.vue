@@ -14,7 +14,7 @@
             <h1>Group Sale Tracker</h1>
             <p class="h4">
               Track sales easily with Group Sale Tracker, a free and easy to use
-              app.
+              web application.
             </p>
             <hr style="border-color: white;" />
             <p>
@@ -49,14 +49,14 @@
         </div>
       </div>
       <div class="row align-items-center my-5">
-        <div class="col-sm-4 offset-md-1">
+        <div class="col-sm-4 offset-md-1 order-sm-2">
           <img
             src="~/assets/stickers.png"
             class="img-fluid"
             alt="Sticker Example"
           />
         </div>
-        <div class="col-sm-8 col-md-6 offset-md-1">
+        <div class="col-sm-8 col-md-6">
           <h2>Categorize Your Sales</h2>
           <p>
             Whether you need 1 category, or 100, add as many categories as you
@@ -76,7 +76,7 @@
         <div class="col-sm-4 offset-md-1">
           <img src="~/assets/browser-storage.png" class="img-fluid" alt="" />
         </div>
-        <div class="col-sm-8 col-md-6">
+        <div class="col-sm-8 col-md-6 offset-md-1">
           <h2>In Browser Data Storage</h2>
           <p>
             Group Sale Tracker saves all data to your browser, not on any server
@@ -90,7 +90,14 @@
         </div>
       </div>
       <div class="row align-items-center my-5">
-        <div class="col-sm-6">
+        <div class="col-sm-4 offset-md-1 order-sm-2">
+          <img
+            src="~/assets/json.png"
+            class="img-fluid"
+            alt="Download and Upload Example"
+          />
+        </div>
+        <div class="col-sm-8 col-md-6">
           <h2>Download and Upload Data</h2>
           <p>
             Do you have a sale that you want to download data for your records?
@@ -102,89 +109,43 @@
             physical location.
           </p>
         </div>
-        <div class="col-sm-4 offset-sm-1">
-          <img
-            src="~/assets/json.png"
-            class="img-fluid"
-            alt="Download and Upload Example"
-          />
-        </div>
-      </div>
-      <div class="row my-5">
-        <div class="col-sm-4">
-          <img
-            src="https://nathanblaylock.com/img/blaylock-nathan-square.jpg"
-            class="rounded-circle img-fluid"
-            alt="Nathan's Profile Picture"
-          />
-        </div>
-        <div class="col-sm-8">
-          <h2>Free Forever, For Everyone</h2>
-          <p>
-            That's right. Free, Free, Free. Why is this free? This app is
-            designed, developed, and maintained by me,
-            <a href="#">*Nathan Blaylock</a>. This app was a fun concept I
-            thought of, and wanted to improve my web development skills. So you
-            can say that I developed this for fun, hoping that it could help
-            someone, somewhere. Because this app uses data stored on your
-            machine instead of a database, it doesn't cost me a penny. I have
-            however spent many early mornings working on this project.
-          </p>
-          <p>
-            I welcome any <a href="#">*feedback</a> from anyone who has a
-            concern or a great idea. Updates may not be very frequent, however,
-            I will be sure to prioritize any updates based on the feedback
-            recieved.
-          </p>
-          <p>
-            If you find this app helpful for your sale, please consider
-            <a href="#">*donating</a> a small amount to my ice cream fund, and
-            PLEASE let me know what you used this app for.
-          </p>
-        </div>
       </div>
     </div>
-    <div class="bg-dark text-white p-3 text-center">
+    <div class="bg-dark py-5 text-white free">
       <div class="container">
-        <h2 class="mb-4">App Development Tools</h2>
-        <div class="d-flex align-items-end justify-content-around">
-          <div>
-            <img
-              src="~/assets/nuxt-white.svg"
-              class="tool-logos py-2"
-              alt="Nuxt Logo"
-            />
+        <div class="row align-items-center">
+          <div class="col-sm-7">
+            <h2>Free Forever, For Everyone</h2>
             <p>
-              Build with Nuxt.js
+              That's right. Free, Free, Free. Why is this free? This app is
+              designed, developed, and maintained by me,
+              <a href="https://nathanblaylock.com" target="_blank"
+                >Nathan Blaylock</a
+              >. I developed this app for fun, hoping that it could help
+              someone, somewhere. Because this app uses data stored on your
+              machine instead of a database, it doesn't cost me a penny.
+            </p>
+            <p>
+              I welcome any <a href="#">*feedback</a> from anyone who has a
+              concern or a great idea. Updates may not be very frequent,
+              however, I will be sure to prioritize any updates based on the
+              feedback recieved.
+            </p>
+            <p>
+              If you find this app helpful for your sale, please consider
+              <a href="https://www.paypal.me/NathanBlaylock" target="_blank"
+                >donating</a
+              >
+              a small amount to help support my efforts, and PLEASE let me know
+              what you used this app for.
             </p>
           </div>
-          <div>
+          <div class="col-lg-3 offset-lg-1 col-sm-5">
             <img
-              src="~/assets/bootstrap-logo.png"
-              class="tool-logos"
-              alt="Bootstrap Logo"
+              src="https://nathanblaylock.com/img/blaylock-nathan-square.jpg"
+              class="rounded-circle img-fluid d-none d-sm-block mx-auto"
+              alt="Nathan's Profile Picture"
             />
-            <p>
-              Uses Bootstrap 4
-            </p>
-          </div>
-          <div>
-            <img
-              src="~/assets/font-awesome.png"
-              class="tool-logos smaller"
-              alt="Font Awesome Logo"
-            />
-            <p>
-              Icons by Font Awesome
-            </p>
-          </div>
-          <div>
-            <img
-              src="~/assets/Octocat.png"
-              class="tool-logos mb-1"
-              alt="GitHub Logo"
-            />
-            <p>Hosted on GitHub Pages</p>
           </div>
         </div>
       </div>
@@ -214,6 +175,14 @@ export default {
   &.smaller {
     max-width: 4.2em;
     padding: 5px;
+  }
+}
+.bg-dark.text-white.free a {
+  color: var(--light);
+  border-bottom: 2px dotted white;
+  &:hover {
+    text-decoration: none;
+    border-bottom-style: solid;
   }
 }
 </style>
