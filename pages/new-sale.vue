@@ -91,6 +91,11 @@
 <script>
 export default {
   name: 'NewSale',
+  head() {
+    return {
+      title: 'New Sale |',
+    }
+  },
   data: function() {
     return {
       currentTrackedSale: false,

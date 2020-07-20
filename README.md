@@ -26,12 +26,13 @@ Version 0
 | July 3, 2020  | 2 Hours   | Improved Upload and data handling            |
 | July 4, 2020  | 3 Hours   | Add Date to Download, Error Page, other bugs |
 | July 14, 2020 | 1.5 Hours | Finish Home Page, add favicons               |
+| July 20, 2020 | 1 Hour    | SEO and Feedback Form                        |
 
 ## Todo
 
-- SEO
 - Print Friendly Pages
-- Add Feedback Form
+- Video Tutorial on YouTube
+- Privacy Policy
 
 ## Bugs/Usability
 

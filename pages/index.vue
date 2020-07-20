@@ -126,10 +126,10 @@
               machine instead of a database, it doesn't cost me a penny.
             </p>
             <p>
-              I welcome any <a href="#">*feedback</a> from anyone who has a
-              concern or a great idea. Updates may not be very frequent,
-              however, I will be sure to prioritize any updates based on the
-              feedback recieved.
+              I welcome any <nuxt-link to="/feedback">feedback</nuxt-link> from
+              anyone who has a concern or a great idea. Updates may not be very
+              frequent, however, I will be sure to prioritize any updates based
+              on the feedback recieved.
             </p>
             <p>
               If you find this app helpful for your sale, please consider

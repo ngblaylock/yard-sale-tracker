@@ -4,14 +4,15 @@ export default {
    ** Headers of the page
    */
   head: {
-    title: 'Group Sale Tracker',
+    title: '',
+    titleTemplate: '%s Group Sale Tracker',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       {
         hid: 'description',
         name: 'description',
-        content: process.env.npm_package_description || ''
+        content: 'Track sales easily with a free and easy to use web application. Use categories to separate out sales and let the app do all the tricky calculations for you. Use cases include combined yard sales, bake sales, concession stands, and more.'
       },
       {
         name: 'apple-mobile-web-app-title',

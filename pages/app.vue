@@ -55,6 +55,11 @@
 <script>
 export default {
   name: 'MainApp',
+  head() {
+    return {
+      title: 'App | ',
+    }
+  },
   data: function() {
     return {
       saleName: '',
