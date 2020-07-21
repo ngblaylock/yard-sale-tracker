@@ -27,7 +27,7 @@
               class="category-color mr-2"
               :style="`background-color: ${categories[index].color}`"
             ></div>
-            <div>{{ ctc.amount | toPrice }} ({{ ctc.quantity }})</div>
+            <div><span class="d-none app-print-inline">{{categories[index].name}}:</span> {{ ctc.amount | toPrice }} ({{ ctc.quantity }})</div>
           </div>
         </div>
       </b-card-body>

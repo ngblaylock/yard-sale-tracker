@@ -27,10 +27,10 @@ Version 0
 | July 4, 2020  | 3 Hours   | Add Date to Download, Error Page, other bugs |
 | July 14, 2020 | 1.5 Hours | Finish Home Page, add favicons               |
 | July 20, 2020 | 1 Hour    | SEO and Feedback Form                        |
+| July 21, 2020 | 1 Hour    | Print Friendly App Page                      |
 
 ## Todo
 
-- Print Friendly Pages
 - Video Tutorial on YouTube
 - Privacy Policy
 

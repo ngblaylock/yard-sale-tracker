@@ -9,6 +9,7 @@
           <form
             method="POST"
             action="https://docs.google.com/forms/u/1/d/e/1FAIpQLSdtenIJ27UyaIAPp2BU3Nx4phdqnkEebeA9qvtGuT92HDanRA/formResponse?embedded=true"
+            target="_blank"
           >
             <div class="form-group">
               <label for="feedback">Feedback &amp; Bugs</label>

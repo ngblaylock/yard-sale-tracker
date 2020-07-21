@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="card" v-if="showSaleInfo">
-      <div class="d-flex justify-content-between gst-btn-group">
+      <div class="d-flex justify-content-between gst-btn-group app-print-hide">
         <button class="btn btn-dark btn-sm" @click="showSaleInfo = false">
           <i class="fas fa-eye-slash"></i> Hide Sale Info
         </button>

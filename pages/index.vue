@@ -117,7 +117,7 @@
           <div class="col-sm-7">
             <h2>Free Forever, For Everyone</h2>
             <p>
-              That's right. Free, Free, Free. Why is this free? This app is
+              That's right. Free, Free, Free. This app is
               designed, developed, and maintained by me,
               <a href="https://nathanblaylock.com" target="_blank"
                 >Nathan Blaylock</a
