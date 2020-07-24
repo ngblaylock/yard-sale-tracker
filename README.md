@@ -28,11 +28,12 @@ Version 0
 | July 14, 2020 | 1.5 Hours | Finish Home Page, add favicons               |
 | July 20, 2020 | 1 Hour    | SEO and Feedback Form                        |
 | July 21, 2020 | 1 Hour    | Print Friendly App Page                      |
+| July 23, 2020 | .5 Hours  | Link to Privacy Policy                       |
 
 ## Todo
 
 - Video Tutorial on YouTube
-- Privacy Policy
+- Google Analytics
 
 ## Bugs/Usability
 
