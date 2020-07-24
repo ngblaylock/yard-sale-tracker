@@ -1,6 +1,6 @@
 # Group Sale Tracker Video Script
 
-Thanks for taking a look at Group Sale Tracker. In this video, we will be going over some of the key functionality that you should expect to see with this web application.
+Hey everyone. Thank you for taking a look at Group Sale Tracker. In this video, we will be going over some of the key functionality that you should expect to see with this web application.
 
 ## What is Group Sale Tracker
 
@@ -8,15 +8,15 @@ Group Sale Tracker is a free, easy to use app to help categorize your sales even
 
 ## Free
 
-The best part about this app is that it is completely free for anyone to use, as much as they need it. The reason why is free is because all the information is stored on your browser, and not on a typical database. This will also improve privacy and security so there is nothing to worry about there.
+The best part about this app is that it is completely free for anyone to use, as much as they need it. The reason why is free is because all the information is stored on your browser, and not on a typical database. This will also improve privacy and security so there is nothing to worry about there. We will see how this works here in a bit.
 
 ## Mobile Responsive
 
-This app is designed to work on any size screen. This allows you to use a phone, tablet, or laptop. Whatever your preference is, you should not have a problem entering your information.
+This app is also designed to work on any size screen. This allows you to use a phone, tablet, or laptop. Whatever your preference is, you should not have a problem entering your information.
 
 ## Creating a New Sale
 
-So let's take a look at how to create a new sale. On the homepage, select the button that says "Start a new group sale", or in the navigation, select "New Group Sale" Here, you can fill out a form for your initial sale setup. 
+So let's take a look at how to create a new sale. On the homepage, select the button that says "Start a new group sale", or in the navigation, select "New Group Sale". Here, you can fill out a form for your initial sale setup. 
 
 Enter the name of your sale. It could be something like "Neighborhood Yard Sale". Next, let's fill in the categories. Let's give them a name, and choose a color for each of them.
 
@@ -58,15 +58,15 @@ It's all nice and good that you have browser storage. But what if you want to sh
 
 ## Delete Data
 
-The last button is to delete your data. Maybe you are all done with it, and just want it off. Select delete, and confirm that you don't want it anymore. Group Sale Tracker will erase all the data from your browser. Then it sends you back to the New Sale Setup page. Notice, you can't get back to the app, even if you wanted to. 
+The last button is to delete your data. Maybe you are all done with it, and just want it off your computer. Select delete, and confirm that you don't want it anymore. Group Sale Tracker will erase all the data from your browser. Then it sends you back to the New Sale Setup page. Notice, you can't get back to the app, even if you wanted to. 
 
 ## Upload Data
 
-Let's take a look at the Upload Data option. Select Upload Data from either the homepage, or the top navigation. This will open up your file system. Simply select the file you want, and there you have it. All the data you downloaded is back up and running. This allows you to send the file to a friend, or open it up in a new browser. Now you can Peruse your data, or continue right where you left off. 
+Let's take a look at the Upload Data option. Select Upload Data from either the homepage, or the top navigation. This will open up your file system. Simply select the file you want, and there you have it. All the data you downloaded is back up and running. This allows you to send the file to a friend, or open it up in a different browser or maching. Now you can Peruse your data, or continue right where you left off. 
 
 ## Print Data
 
-Some people may want to know how to have a printed hard copy of their data. The best way to get a hard copy is to print straight from the app page. When you go to print, it will hide everything that you don't need, and give you everything that you do need. Even if you print in Black and White, you still get some added labels showing sales from specific categories. Also, in many browsers you can save the page to a PDF if you want a PDF. This is also done from the print menu.
+Some people may want to know how to get a hard copy of their data. The best way to get a hard copy is to print straight from the app page. When you go to print, it will hide everything that you don't need, and give you everything that you do need. Even if you print in Black and White, you still get some added labels showing sales from specific categories. Also, in many browsers you can save the page to a PDF if you want a PDF. This is also done from the print menu.
 
 ## Feedback
 

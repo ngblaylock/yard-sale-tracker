@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="jumbotron bg-dark text-white rounded-0 px-0">
+    <div class="jumbotron bg-dark text-white rounded-0 px-0 mb-0">
       <div class="container">
         <div class="row align-items-center">
           <div class="col-lg-6 col-md-5 order-md-last">
@@ -42,6 +42,7 @@
         </div>
       </div>
     </div>
+    <a href="#" class="btn btn-primary btn-block btn-lg rounded-0 mb-5"><i class="far fa-play-circle"></i> Watch a video to see how Group Sale Tracker Works</a>
     <div class="container">
       <div class="row pt-3">
         <div class="col-sm-12">
@@ -140,11 +141,12 @@
               what you used this app for.
             </p>
           </div>
-          <div class="col-lg-3 offset-lg-1 col-sm-5">
+          <div class="col-lg-4 col-sm-5">
             <img
-              src="https://nathanblaylock.com/img/blaylock-nathan-square.jpg"
+              src="https://nathanblaylock.com/img/blaylock-nathan-1-square.png"
               class="rounded-circle img-fluid d-none d-sm-block mx-auto"
               alt="Nathan's Profile Picture"
+              style="max-width: 300px;"
             />
           </div>
         </div>

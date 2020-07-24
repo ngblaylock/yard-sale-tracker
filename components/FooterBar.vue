@@ -1,6 +1,12 @@
 <template>
   <footer class="bg-secondary text-white p-3">
-    <div class="d-flex justify-content-center">
+    <div class="d-flex justify-content-center flex-wrap">
+      <div class="p-2">
+        <img
+          src="https://nathanblaylock.com/img/logo-white-nathan-blaylock-media.svg"
+          style="width: 2em;"
+        />
+      </div>
       <div class="p-2">
         <a href="https://nathanblaylock.com" target="_blank"
           ><i class="fas fa-copyright"></i> Nathan Blaylock Media,
