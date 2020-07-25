@@ -42,7 +42,7 @@
         </div>
       </div>
     </div>
-    <a href="#" class="btn btn-primary btn-block btn-lg rounded-0 mb-5"><i class="far fa-play-circle"></i> Watch a video to see how Group Sale Tracker Works</a>
+    <a href="#" class="btn btn-primary btn-block btn-lg rounded-0 mb-5"><i class="far fa-play-circle"></i> Watch the Group Sale Tracker tutorial</a>
     <div class="container">
       <div class="row pt-3">
         <div class="col-sm-12">

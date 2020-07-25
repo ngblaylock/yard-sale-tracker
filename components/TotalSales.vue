@@ -14,7 +14,7 @@
       </div>
       <div class="card-header bg-dark text-white text-center">
         <p class="h4">
-          Total Sales
+          <span class="d-none app-print-inline">{{saleName}} </span>Total Sales
         </p>
         <p class="h1">{{ totalSales | toPrice }}</p>
       </div>
@@ -89,7 +89,7 @@ import moment from "moment"
 
 export default {
   name: 'TotalSales',
-  props: ['categories', 'completedTransactions'],
+  props: ['categories', 'completedTransactions', 'saleName'],
   data: function() {
     return {
       showSaleInfo: true
@@ -141,6 +141,7 @@ export default {
       let instructions =
         'Go to https://groupsaletracker.nathanblaylock.com and select Upload Data from the main navigation bar. Select this file from your folder. You should automatically be re-directed to the main app.'
       let now = new Date()
+      let version = '0'
       let date = now.toString()
       let nowFormatted = moment(now).format('YYMMDD_HHmmss');
       let saleName = JSON.parse(localStorage.getItem('saleName'))
@@ -153,6 +154,7 @@ export default {
       let downloadObj = {
         instructions,
         date,
+        version,
         saleName,
         categories,
         completedTransactions

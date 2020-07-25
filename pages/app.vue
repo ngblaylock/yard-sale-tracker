@@ -44,6 +44,7 @@
       </div>
       <div class="col-lg-5 col-md-6 app-print-full">
         <TotalSales
+          :saleName="saleName"
           :categories="categories"
           :completedTransactions="completedTransactions"
         />
